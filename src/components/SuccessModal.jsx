@@ -56,7 +56,7 @@ export function SuccessModal({
         </div>
 
         <div className="mb-4">
-          <AnimalImage src={animal.image} alt={animal.name} />
+          <AnimalImage animal={animal} src={animal.image} alt={animal.name} />
         </div>
 
         {/* Score & Stats Pill Grid */}

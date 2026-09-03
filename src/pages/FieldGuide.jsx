@@ -190,6 +190,13 @@ export function FieldGuide({ fieldGuide, settings }) {
                     src={animal.image}
                     alt={animal.name}
                     loading="lazy"
+                    referrerPolicy="no-referrer"
+                    crossOrigin="anonymous"
+                    onError={(e) => {
+                      if (animal.rawImage && e.target.src !== animal.rawImage) {
+                        e.target.src = animal.rawImage;
+                      }
+                    }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 ) : (
@@ -279,7 +286,7 @@ export function FieldGuide({ fieldGuide, settings }) {
                 <span className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-1">
                   Field Sighting
                 </span>
-                <AnimalImage src={inspectAnimal.image} alt={inspectAnimal.name} />
+                <AnimalImage animal={inspectAnimal} src={inspectAnimal.image} alt={inspectAnimal.name} />
               </div>
 
               <div>

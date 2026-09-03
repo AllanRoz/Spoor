@@ -146,8 +146,9 @@ export function ClueCard({ activeClueId, animal }) {
             </h3>
           </div>
           <AnimalImage
+            animal={animal}
             src={animal.image}
-            alt="Field sighting photograph"
+            alt={`Field sighting photograph of ${animal.name}`}
             caption="High-resolution wildlife photograph"
           />
         </div>

@@ -29,7 +29,7 @@ export function GiveUpModal({
         </p>
 
         <div className="mb-4">
-          <AnimalImage src={animal.image} alt={animal.name} />
+          <AnimalImage animal={animal} src={animal.image} alt={animal.name} />
         </div>
 
         {animal.funFacts && animal.funFacts.length > 0 && (

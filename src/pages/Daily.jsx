@@ -233,7 +233,7 @@ export function Daily({ settings, stats, onUpdateStats, dailyRecord, onUpdateDai
           </div>
 
           <div className="max-w-xs mx-auto">
-            <AnimalImage src={todayAnimal.image} alt={todayAnimal.name} />
+            <AnimalImage animal={todayAnimal} src={todayAnimal.image} alt={todayAnimal.name} />
           </div>
 
           <div className="grid grid-cols-3 gap-2">

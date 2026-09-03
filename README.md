@@ -6,6 +6,8 @@
 
 Players investigate realistic animal spoor (footprints), natural habitats, physical dimensions, and feeding habits to deduce unknown creatures from across the globe.
 
+![SPOOR](screenshots/spoor.png)
+
 ---
 
 ## 🎮 Game Features
