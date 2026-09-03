@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import confetti from 'canvas-confetti';
 import { Award, Flame, BookOpen, ArrowRight, Share2, CheckCircle2 } from 'lucide-react';
 import { AnimalImage } from './AnimalImage.jsx';
@@ -17,6 +18,8 @@ export function SuccessModal({
 }) {
   useEffect(() => {
     if (isOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
       // Fire festive confetti
       confetti({
         particleCount: 80,
@@ -24,14 +27,17 @@ export function SuccessModal({
         origin: { y: 0.6 },
         colors: ['#d97706', '#059669', '#2563eb', '#dc2626', '#ca8a04'],
       });
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
     }
   }, [isOpen]);
 
   if (!isOpen || !animal) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm overflow-y-auto animate-fade-in">
-      <div className="w-full max-w-md bg-white dark:bg-[#111a17] rounded-3xl p-6 sm:p-7 border-2 border-emerald-500/50 shadow-2xl my-6 animate-scale-in">
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] w-screen h-screen flex items-center justify-center p-4 bg-black/95 dark:bg-[#060b09]/98 backdrop-blur-md overflow-y-auto animate-fade-in">
+      <div className="w-full max-w-md bg-white dark:bg-[#111a17] rounded-3xl p-6 sm:p-7 border-2 border-emerald-500/50 shadow-2xl my-auto animate-scale-in">
         {/* Header Badge */}
         <div className="flex items-center justify-between mb-4">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
@@ -138,6 +144,7 @@ export function SuccessModal({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

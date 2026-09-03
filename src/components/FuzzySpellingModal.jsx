@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { HelpCircle, Check, X } from 'lucide-react';
 
 export function FuzzySpellingModal({
@@ -8,11 +9,21 @@ export function FuzzySpellingModal({
   onConfirm,
   onReject
 }) {
+  useEffect(() => {
+    if (isOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-      <div className="w-full max-w-sm bg-white dark:bg-stone-900 rounded-3xl p-6 border-2 border-amber-500/40 shadow-2xl text-center animate-scale-in">
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] w-screen h-screen flex items-center justify-center p-4 bg-black/95 dark:bg-[#060b09]/98 backdrop-blur-md animate-fade-in">
+      <div className="w-full max-w-sm bg-white dark:bg-stone-900 rounded-3xl p-6 border-2 border-amber-500/40 shadow-2xl text-center my-auto animate-scale-in">
         <div className="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center mx-auto mb-3">
           <HelpCircle className="w-7 h-7" />
         </div>
@@ -53,6 +64,7 @@ export function FuzzySpellingModal({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
