@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.45);
+}
+
+/* Field journal textured background pattern */
+.bg-journal-pattern {
+  background-image: radial-gradient(rgba(75, 136, 104, 0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+.dark .bg-journal-pattern {
+  background-image: radial-gradient(rgba(110, 164, 135, 0.07) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Field journal topo / contour lines aesthetic */
+.bg-topo-pattern {
+  background-image: radial-gradient(circle at 50% 50%, rgba(217, 119, 6, 0.04) 0%, transparent 60%);
+}
+
+/* Smooth card transitions */
+.journal-card {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
