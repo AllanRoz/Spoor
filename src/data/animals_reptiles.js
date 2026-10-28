@@ -16,7 +16,7 @@ export const REPTILES = [
       features: ['Five clawed splayed digits', 'Curved blade-like claws', 'Deep central tail sweep groove', 'Wide reptile waddle stride'],
       trackNotes: 'Tail drag creates a distinct continuous wavy furrow between alternating foot imprints.',
     },
-    habitat: 'Tropical savanna forests, dry deciduous scrub, and coastal palm beaches of a few Indonesian islands (Komodo, Rinca, Flores).',
+    habitat: 'Tropical savanna forests, dry deciduous scrub, and coastal palm beaches of a few rugged Lesser Sunda Islands.',
     size: {
       weight: '70–90 kg (150–200 lbs)',
       length: '2.3–3.0 m (7.5–10 ft)',
@@ -25,7 +25,7 @@ export const REPTILES = [
     },
     diet: {
       type: 'Carnivore',
-      description: 'Apex ambush hunter eating Timor deer, wild pigs, water buffalo, smaller dragons, and carrion using anticoagulating venom glands.',
+      description: 'Apex ambush hunter eating Timor deer, wild pigs, water buffalo, conspecific juveniles, and carrion using anticoagulating venom glands.',
     },
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Komodo_dragon_%28Varanus_komodoensis%29.jpg/800px-Komodo_dragon_%28Varanus_komodoensis%29.jpg',
     funFacts: [
@@ -82,7 +82,7 @@ export const REPTILES = [
       dimensions: 'Hind foot: 20–28 cm long, 15–20 cm wide',
       description: 'Broad reptilian footprint with 5 toes on the front foot and 4 webbed toes on the rear foot. Tracks show a distinct wide belly drag and central tail tail-swish groove in black marsh mud.',
       features: ['5 front / 4 webbed rear toes', 'Rounded snout drag marks', 'Heavy central tail groove', 'Direct water-entry slide paths'],
-      trackNotes: 'Creates deep "alligator holes" that retain water during winter droughts, supporting marsh wildlife.',
+      trackNotes: 'Creates deep aquatic wallow depressions that retain water during winter droughts, supporting marsh wildlife.',
     },
     habitat: 'Freshwater swamps, bayous, sluggish rivers, marshes, and lakes of the southeastern United States.',
     size: {
@@ -127,7 +127,7 @@ export const REPTILES = [
     },
     diet: {
       type: 'Carnivore',
-      description: 'Strictly ophiophagous: specializes in hunting other snakes (rat snakes, pythons, kraits, true cobras) and monitor lizards.',
+      description: 'Strictly ophiophagous: specializes in hunting other serpents (rat snakes, pythons, kraits, pit vipers) and monitor lizards.',
     },
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/12_-_The_Mystical_King_Cobra_and_Coffee_Forests.jpg/800px-12_-_The_Mystical_King_Cobra_and_Coffee_Forests.jpg',
     funFacts: [
@@ -184,14 +184,14 @@ export const REPTILES = [
       dimensions: '18–25 cm diameter',
       description: 'Large, round, elephantine stamp with five blunt claws on the front foot and four on the hind foot. Often accompanied by a smooth, wide central plastron ground drag mark.',
       features: ['Elephantine circular pad', 'Four to five blunt digging claws', 'Plastron scrape marks', 'Very wide stance (60–80 cm)'],
-      trackNotes: 'Creates visible trampled trails ("tortoise highways") through volcanic scrub down to water wallows.',
+      trackNotes: 'Creates visible wide trampled trails through volcanic scrub down to fresh water wallows.',
     },
-    habitat: 'Arid volcanic lowlands and humid highlands of the Galápagos Islands.',
+    habitat: 'Arid volcanic lowlands and humid caldera highlands of remote Pacific equatorial islands.',
     size: {
       weight: '150–300 kg (330–660 lbs)',
       length: 'Carapace length 1.2–1.5 m (4–5 ft)',
       heightOrWingspan: 'Shell height up to 1 meter',
-      note: 'The largest living tortoise species, with life expectancies exceeding 150 years.',
+      note: 'The largest living terrestrial chelonian on Earth, with life expectancies exceeding 150 years.',
     },
     diet: {
       type: 'Herbivore',

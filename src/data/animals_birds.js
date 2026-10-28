@@ -55,7 +55,7 @@ export const BIRDS = [
       weight: '22–45 kg (49–99 lbs)',
       length: '110–130 cm (43–51 in)',
       heightOrWingspan: 'Flipper length 35 cm',
-      note: 'Tallest and heaviest of all living penguin species.',
+      note: 'Tallest and heaviest of all living flightless marine diving birds.',
     },
     diet: {
       type: 'Carnivore',
@@ -157,7 +157,7 @@ export const BIRDS = [
       weight: '2.0–4.0 kg (4.4–8.8 lbs)',
       length: '110–150 cm (43–59 in)',
       heightOrWingspan: 'Wingspan 140–170 cm (55–67 in)',
-      note: 'The largest and most widespread species of the flamingo family.',
+      note: 'The largest and most widespread species of its filter-feeding wading family.',
     },
     diet: {
       type: 'Omnivore',
@@ -225,7 +225,7 @@ export const BIRDS = [
       weight: '500–850 g (1.1–1.9 lbs)',
       length: '55–65 cm (22–26 in)',
       heightOrWingspan: 'Massive bill 19–23 cm (8 in)',
-      note: 'Largest species of toucan with the largest bill relative to body size of any bird.',
+      note: 'Largest member of its family, boasting the largest bill relative to body size of any bird.',
     },
     diet: {
       type: 'Omnivore',
@@ -293,7 +293,7 @@ export const BIRDS = [
       weight: '5–11 kg (11–24 lbs)',
       length: '100–125 cm (39–49 in)',
       heightOrWingspan: 'Wingspan 1.2–1.4 m (4–4.6 ft)',
-      note: 'Ancestor of all domestic turkeys.',
+      note: 'Large ground-dwelling game bird with iridescent bronze plumage and bare carunculated head wattles.',
     },
     diet: {
       type: 'Omnivore',
@@ -558,7 +558,7 @@ export const BIRDS = [
       dimensions: '5–6 cm long, 3.5–4.5 cm wide',
       description: 'Distinctive zygodactyl "X" footprint with two toes pointing forward and two toes pointing backward. Tracks make it impossible to tell which direction the bird was traveling.',
       features: ['Symmetrical "X" shaped print', 'Two toes forward, two backward', 'Direction-confusing tracks', 'Long running strides in sand'],
-      trackNotes: 'Native American legends celebrated the roadrunner’s X-tracks because evil spirits could not follow their direction.',
+      trackNotes: 'Native American folklore celebrated its distinctive X-tracks because the symmetric toes disguised which direction the bird was traveling.',
     },
     habitat: 'Arid desert scrub, chaparral, and brushy canyons of the southwestern United States and northern Mexico.',
     size: {

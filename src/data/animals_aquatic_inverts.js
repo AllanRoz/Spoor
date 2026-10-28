@@ -192,11 +192,11 @@ export const AMPHIBIANS = [
       weight: '1.0–1.8 kg (2.2–4.0 lbs)',
       length: '15–24 cm (6–9.5 in)',
       heightOrWingspan: 'Squat heavy body',
-      note: 'One of the largest toad species in the world, equipped with toxic parotoid glands.',
+      note: 'One of the largest bufonid anurans in the world, equipped with prominent toxic parotoid glands.',
     },
     diet: {
       type: 'Omnivore',
-      description: 'Voracious eater of beetles, ants, centipedes, snails, mice, smaller toads, dog food, and agricultural waste.',
+      description: 'Voracious opportunist eating beetles, ants, centipedes, snails, mice, smaller anurans, pet food, and agricultural scraps.',
     },
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Bufo_marinus_from_Australia.jpg/800px-Bufo_marinus_from_Australia.jpg',
     funFacts: [
@@ -230,7 +230,7 @@ export const AMPHIBIANS = [
     },
     diet: {
       type: 'Carnivore',
-      description: 'Specializes in hunting river crayfish (comprising over 90% of diet), plus small fish, worms, and hellbender eggs.',
+      description: 'Specializes in hunting river crayfish (comprising over 90% of diet), plus small fish, worms, and amphibian eggs.',
     },
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Hellbender.jpg/800px-Hellbender.jpg',
     funFacts: [
@@ -263,7 +263,7 @@ export const FISH = [
       weight: '1,000–2,200 kg (2,200–4,900 lbs)',
       length: '4.5–6.0 m (15–20 ft)',
       heightOrWingspan: 'Dorsal fin height 60 cm',
-      note: 'The largest extant macropredatory shark in the ocean.',
+      note: 'The largest extant macropredatory lamniform fish in the ocean.',
     },
     diet: {
       type: 'Carnivore',
@@ -331,7 +331,7 @@ export const FISH = [
       weight: '80–150 kg (180–330 lbs)',
       length: '2.5–3.7 m (8.2–12.1 ft)',
       heightOrWingspan: 'Cephalofoil span up to 1 meter',
-      note: 'Named for the scalloped, indented anterior edge of its wide hammer-like head (cephalofoil).',
+      note: 'Named for the undulating, indented anterior edge of its wide wing-like head (cephalofoil).',
     },
     diet: {
       type: 'Carnivore',
@@ -427,7 +427,7 @@ export const INVERTEBRATES = [
     footprint: {
       type: 'cephalopod',
       dimensions: 'Arm span 3–5 meters; suction disc diameter 3–6 cm',
-      description: 'Circular suction-cup indentations in soft seafloor silt or mud, surrounded by a characteristic "octopus garden" midden of cracked crab carapaces and mollusk shells.',
+      description: 'Circular suction-cup indentations in soft seafloor silt or mud, surrounded by a characteristic garden midden of cracked crab carapaces and mollusk shells.',
       features: ['Paired circular suction disc impressions', 'Crab carapace bone-pile midden', 'Den entrance excavation trench', 'Jet-propulsion siphon craters'],
       trackNotes: 'Dens are pinpointed by external mounds of cracked crab and clam shells ("middens") piled neatly at the entrance hole.',
     },
@@ -436,11 +436,11 @@ export const INVERTEBRATES = [
       weight: '15–50 kg (33–110 lbs)',
       length: 'Radial arm span 3.0–4.5 m (9.8–14.8 ft)',
       heightOrWingspan: 'Mantle length 30–50 cm',
-      note: 'The largest and longest-lived species of octopus in the world.',
+      note: 'The largest and longest-lived cephalopod of its order in the ocean.',
     },
     diet: {
       type: 'Carnivore',
-      description: 'Benthic carnivore hunting Dungeness crabs, lobsters, shrimp, clams, abalones, flatfish, and other octopuses using a parrot-like chitin beak.',
+      description: 'Benthic carnivore hunting Dungeness crabs, lobsters, shrimp, clams, abalones, flatfish, and smaller cephalopods using a parrot-like chitin beak.',
     },
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Giant_Pacific_Octopus.jpg/800px-Giant_Pacific_Octopus.jpg',
     funFacts: [
@@ -495,7 +495,7 @@ export const INVERTEBRATES = [
     footprint: {
       type: 'deep_ocean_spoor',
       dimensions: 'Circular sucker scar diameter 5–10 cm',
-      description: 'Spoor is etched as round, toothed-ring sucker scars on the heads and flanks of diving sperm whales, alongside chitinous squid beak fragments found in whale stomachs.',
+      description: 'Spoor is etched as round, toothed-ring sucker scars on the heads and flanks of diving sperm whales, alongside chitinous beak fragments found in whale stomachs.',
       features: ['Toothed sucker scars on sperm whales', 'Chitinous beak fragments in ambergris', 'Bioluminescent deep-sea flashing wakes', 'Pelagic tentacle drag vortices'],
       trackNotes: 'Known historically through round sucker scars (with serrated chitinous rims) pressed into sperm whale blubber.',
     },
@@ -508,7 +508,7 @@ export const INVERTEBRATES = [
     },
     diet: {
       type: 'Carnivore',
-      description: 'Deep-sea fish (orange roughy, hoki) and other pelagic squids, captured with two elongated feeding tentacles armed with toothed suckers.',
+      description: 'Deep-sea fish (orange roughy, hoki) and other pelagic cephalopods, captured with two elongated feeding tentacles armed with toothed suckers.',
     },
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Architeuthis_princeps_crop.jpg/800px-Architeuthis_princeps_crop.jpg',
     funFacts: [

@@ -426,5 +426,137 @@
   "honeybee": {
     "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Apis_mellifera_Western_honey_bee.jpg/330px-Apis_mellifera_Western_honey_bee.jpg",
     "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F4%2F4d%2FApis_mellifera_Western_honey_bee.jpg%2F330px-Apis_mellifera_Western_honey_bee.jpg&w=800&fit=cover&q=80"
+  },
+  "snowshoe-hare": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Lepus_americanus_-_cropped.jpg/800px-Lepus_americanus_-_cropped.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F5%2F52%2FLepus_americanus_-_cropped.jpg%2F800px-Lepus_americanus_-_cropped.jpg&w=800&fit=cover&q=80"
+  },
+  "european-badger": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Meles_meles_sitting.jpg/800px-Meles_meles_sitting.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fd%2Fd6%2FMeles_meles_sitting.jpg%2F800px-Meles_meles_sitting.jpg&w=800&fit=cover&q=80"
+  },
+  "river-otter": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/North_American_river_otter_in_the_sub-alpine_zone_of_Mount_Rainier_National_Park.jpg/800px-North_American_river_otter_in_the_sub-alpine_zone_of_Mount_Rainier_National_Park.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F4%2F48%2FNorth_American_river_otter_in_the_sub-alpine_zone_of_Mount_Rainier_National_Park.jpg%2F800px-North_American_river_otter_in_the_sub-alpine_zone_of_Mount_Rainier_National_Park.jpg&w=800&fit=cover&q=80"
+  },
+  "aardvark": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Aardvark_1.jpg/800px-Aardvark_1.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F8%2F87%2FAardvark_1.jpg%2F800px-Aardvark_1.jpg&w=800&fit=cover&q=80"
+  },
+  "giant-pangolin": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Smutsia_gigantea.jpg/800px-Smutsia_gigantea.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F4%2F4b%2FSmutsia_gigantea.jpg%2F800px-Smutsia_gigantea.jpg&w=800&fit=cover&q=80"
+  },
+  "ocelot": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Ocelot_in_Corcovado_National_Park.jpg/800px-Ocelot_in_Corcovado_National_Park.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F0%2F07%2FOcelot_in_Corcovado_National_Park.jpg%2F800px-Ocelot_in_Corcovado_National_Park.jpg&w=800&fit=cover&q=80"
+  },
+  "caracal": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Caracal_caracal_01.jpg/800px-Caracal_caracal_01.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fa8%2FCaracal_caracal_01.jpg%2F800px-Caracal_caracal_01.jpg&w=800&fit=cover&q=80"
+  },
+  "pronghorn": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Antilocapra_americana.jpg/800px-Antilocapra_americana.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fab%2FAntilocapra_americana.jpg%2F800px-Antilocapra_americana.jpg&w=800&fit=cover&q=80"
+  },
+  "european-hedgehog": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Igel01.jpg/800px-Igel01.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fd%2Fd4%2FIgel01.jpg%2F800px-Igel01.jpg&w=800&fit=cover&q=80"
+  },
+  "white-faced-capuchin": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Capuchin_Costa_Rica.jpg/800px-Capuchin_Costa_Rica.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F4%2F40%2FCapuchin_Costa_Rica.jpg%2F800px-Capuchin_Costa_Rica.jpg&w=800&fit=cover&q=80"
+  },
+  "sloth-bear": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Melursus_ursinus_11.jpg/800px-Melursus_ursinus_11.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fa2%2FMelursus_ursinus_11.jpg%2F800px-Melursus_ursinus_11.jpg&w=800&fit=cover&q=80"
+  },
+  "osprey": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Pandion_haliaetus_-_Glen_Tress_Forest-8.jpg/800px-Pandion_haliaetus_-_Glen_Tress_Forest-8.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fc%2Fca%2FPandion_haliaetus_-_Glen_Tress_Forest-8.jpg%2F800px-Pandion_haliaetus_-_Glen_Tress_Forest-8.jpg&w=800&fit=cover&q=80"
+  },
+  "brown-kiwi": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Te_Tuhi_-_brown_kiwi.jpg/800px-Te_Tuhi_-_brown_kiwi.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fd%2Fd4%2FTe_Tuhi_-_brown_kiwi.jpg%2F800px-Te_Tuhi_-_brown_kiwi.jpg&w=800&fit=cover&q=80"
+  },
+  "pileated-woodpecker": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Pileated_Woodpecker_in_Central_Park_%2849419%29.jpg/800px-Pileated_Woodpecker_in_Central_Park_%2849419%29.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F1%2F1a%2FPileated_Woodpecker_in_Central_Park_%252849419%2529.jpg%2F800px-Pileated_Woodpecker_in_Central_Park_%252849419%2529.jpg&w=800&fit=cover&q=80"
+  },
+  "mallard": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Anas_platyrhynchos_male_female_quadrat.jpg/800px-Anas_platyrhynchos_male_female_quadrat.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fb%2Fbf%2FAnas_platyrhynchos_male_female_quadrat.jpg%2F800px-Anas_platyrhynchos_male_female_quadrat.jpg&w=800&fit=cover&q=80"
+  },
+  "eurasian-magpie": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Pica_pica_-_Eurasian_Magpie_RWD2.jpg/800px-Pica_pica_-_Eurasian_Magpie_RWD2.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fb%2Fb6%2FPica_pica_-_Eurasian_Magpie_RWD2.jpg%2F800px-Pica_pica_-_Eurasian_Magpie_RWD2.jpg&w=800&fit=cover&q=80"
+  },
+  "great-hornbill": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Great_Hornbill_%28Buceros_bicornis%29-8.jpg/800px-Great_Hornbill_%28Buceros_bicornis%29-8.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F9%2F97%2FGreat_Hornbill_%2528Buceros_bicornis%2529-8.jpg%2F800px-Great_Hornbill_%2528Buceros_bicornis%2529-8.jpg&w=800&fit=cover&q=80"
+  },
+  "leatherback-sea-turtle": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Leatherback_turtle_%28Dermochelys_coriacea%29.jpg/800px-Leatherback_turtle_%28Dermochelys_coriacea%29.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fd%2Fd4%2FLeatherback_turtle_%2528Dermochelys_coriacea%2529.jpg%2F800px-Leatherback_turtle_%2528Dermochelys_coriacea%2529.jpg&w=800&fit=cover&q=80"
+  },
+  "sidewinder": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Crotalus_cerastes_mesquite_springs_1.jpg/800px-Crotalus_cerastes_mesquite_springs_1.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fc%2Fc5%2FCrotalus_cerastes_mesquite_springs_1.jpg%2F800px-Crotalus_cerastes_mesquite_springs_1.jpg&w=800&fit=cover&q=80"
+  },
+  "frilled-lizard": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Chlamydosaurus_kingii_01.jpg/800px-Chlamydosaurus_kingii_01.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fe%2Fe0%2FChlamydosaurus_kingii_01.jpg%2F800px-Chlamydosaurus_kingii_01.jpg&w=800&fit=cover&q=80"
+  },
+  "gharial": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Gharial_San_Diego.jpg/800px-Gharial_San_Diego.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fb%2Fb8%2FGharial_San_Diego.jpg%2F800px-Gharial_San_Diego.jpg&w=800&fit=cover&q=80"
+  },
+  "cottonmouth": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Agkistrodon_piscivorus.jpg/800px-Agkistrodon_piscivorus.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fc%2Fcd%2FAgkistrodon_piscivorus.jpg%2F800px-Agkistrodon_piscivorus.jpg&w=800&fit=cover&q=80"
+  },
+  "spotted-salamander": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ambystoma_maculatum_02.jpg/800px-Ambystoma_maculatum_02.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F0%2F05%2FAmbystoma_maculatum_02.jpg%2F800px-Ambystoma_maculatum_02.jpg&w=800&fit=cover&q=80"
+  },
+  "goliath-frog": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Goliath_frog.jpg/800px-Goliath_frog.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F5%2F52%2FGoliath_frog.jpg%2F800px-Goliath_frog.jpg&w=800&fit=cover&q=80"
+  },
+  "common-mudpuppy": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Necturus_maculosus.jpg/800px-Necturus_maculosus.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F9%2F90%2FNecturus_maculosus.jpg%2F800px-Necturus_maculosus.jpg&w=800&fit=cover&q=80"
+  },
+  "giant-manta-ray": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Manta_birostris-Thailand.jpg/800px-Manta_birostris-Thailand.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fe%2Fe0%2FManta_birostris-Thailand.jpg%2F800px-Manta_birostris-Thailand.jpg&w=800&fit=cover&q=80"
+  },
+  "green-moray-eel": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Gymnothorax_funebris_in_Cayman_Islands.jpg/800px-Gymnothorax_funebris_in_Cayman_Islands.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F6%2F6b%2FGymnothorax_funebris_in_Cayman_Islands.jpg%2F800px-Gymnothorax_funebris_in_Cayman_Islands.jpg&w=800&fit=cover&q=80"
+  },
+  "great-barracuda": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Sphyraena_barracuda_01.jpg/800px-Sphyraena_barracuda_01.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F0%2F07%2FSphyraena_barracuda_01.jpg%2F800px-Sphyraena_barracuda_01.jpg&w=800&fit=cover&q=80"
+  },
+  "red-lionfish": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Red_lionfish_near_Marsa_Alam%2C_Egypt.jpg/800px-Red_lionfish_near_Marsa_Alam%2C_Egypt.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F0%2F0b%2FRed_lionfish_near_Marsa_Alam%252C_Egypt.jpg%2F800px-Red_lionfish_near_Marsa_Alam%252C_Egypt.jpg&w=800&fit=cover&q=80"
+  },
+  "european-mantis": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Mantis_religiosa_in_nature.jpg/800px-Mantis_religiosa_in_nature.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F5%2F5e%2FMantis_religiosa_in_nature.jpg%2F800px-Mantis_religiosa_in_nature.jpg&w=800&fit=cover&q=80"
+  },
+  "goliath-birdeater": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Theraphosa_blondi_female.jpg/800px-Theraphosa_blondi_female.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F6%2F6f%2FTheraphosa_blondi_female.jpg%2F800px-Theraphosa_blondi_female.jpg&w=800&fit=cover&q=80"
+  },
+  "monarch-butterfly": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg/800px-Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F7%2F73%2FMonarch_Butterfly_Danaus_plexippus_Male_2664px.jpg%2F800px-Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg&w=800&fit=cover&q=80"
+  },
+  "leafcutter-ant": {
+    "raw": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Leafcutter_ants_transporting_leaves.jpg/800px-Leafcutter_ants_transporting_leaves.jpg",
+    "proxy": "https://wsrv.nl/?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fc%2Fcd%2FLeafcutter_ants_transporting_leaves.jpg%2F800px-Leafcutter_ants_transporting_leaves.jpg&w=800&fit=cover&q=80"
   }
 }

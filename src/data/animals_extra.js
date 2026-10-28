@@ -14,7 +14,7 @@ export const EXTRA_ANIMALS = [
     footprint: {
       type: 'canid',
       dimensions: '7.5–9 cm long, 6.5–7.5 cm wide',
-      description: 'Unlike most canids which have 5 front toes, the painted dog has only four digits on front and hind feet. Claws leave blunt indentations and toe pads are tightly clustered.',
+      description: 'Unlike most canids which have 5 front toes, this species has only four digits on front and hind feet. Claws leave blunt indentations and toe pads are tightly clustered.',
       features: ['Only four digits on all feet', 'No front dewclaw mark', 'Blunt running claws', 'High endurance trotting trails'],
       trackNotes: 'Lacks the fifth front toe (dewclaw) entirely, adapted for pure running endurance.',
     },
@@ -57,7 +57,7 @@ export const EXTRA_ANIMALS = [
       weight: '18–30 kg (40–66 lbs)',
       length: '80–130 cm (31–51 in)',
       heightOrWingspan: 'Shoulder height 60–75 cm (24–30 in)',
-      note: 'Largest of the four lynx species, equipped with black ear tufts.',
+      note: 'Largest member of its genus, equipped with distinctive black ear tufts and flared facial ruffs.',
     },
     diet: {
       type: 'Carnivore',
@@ -129,7 +129,7 @@ export const EXTRA_ANIMALS = [
     },
     diet: {
       type: 'Herbivore',
-      description: 'Specializes in reindeer moss (Cladonia lichens) in winter, supplementing with sedges, dwarf willow leaves, and grasses in summer.',
+      description: 'Specializes in ground-mat lichens (Cladonia) in winter, supplementing with sedges, dwarf willow leaves, and grasses in summer.',
     },
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Rein_01.jpg/800px-Rein_01.jpg',
     funFacts: [
@@ -220,7 +220,7 @@ export const EXTRA_ANIMALS = [
       dimensions: '11–13 cm long, 9–10 cm wide',
       description: 'Cloven hoof with two distinct, pointed, teardrop cleats. Closely resembles a giraffe hoof but smaller, leaving deep paths through dense rainforest mud.',
       features: ['Two symmetrical pointed cleats', 'No dewclaw marks', 'Pacing gait tracks', 'Deep rainforest trail ruts'],
-      trackNotes: 'Scent glands between the hooves leave a tar-like substance that marks its path for other okapis.',
+      trackNotes: 'Scent glands between the hooves leave a tar-like substance that marks its path for conspecifics in dense jungle.',
     },
     habitat: 'Dense tropical canopy rainforests of the Ituri Forest in the Democratic Republic of the Congo.',
     size: {
@@ -252,7 +252,7 @@ export const EXTRA_ANIMALS = [
     footprint: {
       type: 'cloven',
       dimensions: '5.5–7 cm long, 5–6 cm wide',
-      description: 'Cloven-hoofed track with two blunt cleats. Often accompanied by circular calloused knee impressions in the dust where the warthog grazed on its wrists.',
+      description: 'Cloven-hoofed track with two blunt cleats. Often accompanied by circular calloused knee impressions in the dust where the animal grazed on its wrists.',
       features: ['Two blunt cloven cleats', 'Knee pad impressions in dirt', 'Conical snout digging holes', 'Trotting tail-up trails'],
       trackNotes: 'Shows knee impressions where it grazed on padded front wrist joints.',
     },
@@ -288,7 +288,7 @@ export const EXTRA_ANIMALS = [
       dimensions: 'Dorsal fin height up to 1.8 meters (6 ft)',
       description: 'Marine spoor manifests as synchronous pod surface displacement wakes, intentional wave-wash shelf washings against sea ice, and distinctive seal wash scars on pack ice.',
       features: ['Wave-wash seal hunting wakes', 'Pod coordinated surface breaches', 'Distinctive saddle patch blow signatures', 'Strand-feeding beach slide marks'],
-      trackNotes: 'Field tracking in Patagonia identifies temporary beach trenches where orcas intentionally strand themselves to grab sea lion pups.',
+      trackNotes: 'Field tracking in Patagonia identifies temporary beach trenches where pods intentionally strand themselves on gravel to seize sea lion pups.',
     },
     habitat: 'All world oceans, from freezing polar ice edges in the Arctic and Antarctic to warm tropical equatorial seas.',
     size: {
@@ -428,7 +428,7 @@ export const EXTRA_ANIMALS = [
       dimensions: 'Hind: 25–32 cm; Front: 20–25 cm',
       description: 'Massive five-toed front foot and four-toed webbed hind foot with blunt nails. Flanked by deep mud slide troughs where the animal hauled out on African riverbanks.',
       features: ['5 front / 4 webbed hind toes', 'Broad belly drag mud trail', 'Heavy scute armor impressions', 'Riverbank haulout chutes'],
-      trackNotes: 'Creates deep slipways along muddy riverbanks where the crocodile slides smoothly into the water.',
+      trackNotes: 'Creates deep slipways along muddy riverbanks where this giant predator slides smoothly into the water.',
     },
     habitat: 'Rivers, freshwater marshes, mangrove swamps, and major lakes across Sub-Saharan Africa and Madagascar.',
     size: {
@@ -600,9 +600,9 @@ export const EXTRA_ANIMALS = [
     footprint: {
       type: 'crustacean_track',
       dimensions: 'Straddle width 60–90 cm across',
-      description: 'Wide, heavy, paired rows of pointed armored walking leg punctures in coastal sand and coral rubble, accompanied by deeply cracked fibrous coconut husks.',
-      features: ['Wide multi-legged armored claw track', 'Deep pointed walking leg depressions', 'Piles of ripped fibrous coconut husks', 'Subterranean coral burrows'],
-      trackNotes: 'Accompanied by discarded, shredded coconut shells torn open by its powerful crushing claws.',
+      description: 'Wide, heavy, paired rows of pointed armored walking leg punctures in coastal sand and coral rubble, accompanied by deeply cracked fibrous tropical fruit husks.',
+      features: ['Wide multi-legged armored claw track', 'Deep pointed walking leg depressions', 'Piles of ripped fibrous husks', 'Subterranean coral burrows'],
+      trackNotes: 'Accompanied by discarded, shredded hard palm shells torn open by its powerful crushing claws.',
     },
     habitat: 'Coastal tropical forests and rocky limestone atolls across islands in the Indian and Pacific Oceans.',
     size: {
@@ -613,7 +613,7 @@ export const EXTRA_ANIMALS = [
     },
     diet: {
       type: 'Omnivore',
-      description: 'Tears open coconuts with crushing claws; eats pandanus fruit, nuts, seeds, carrion, and other crabs.',
+      description: 'Tears open hard palm drupes with crushing claws; eats pandanus fruit, nuts, seeds, carrion, and other crustaceans.',
     },
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Birgus_latro.jpg/800px-Birgus_latro.jpg',
     funFacts: [
@@ -643,7 +643,7 @@ export const EXTRA_ANIMALS = [
       weight: '1.5–4.5 kg (3.3–9.9 lbs)',
       length: '45–60 cm (18–24 in) including telson tail',
       heightOrWingspan: 'Dome carapace width 30 cm',
-      note: 'A living fossil essentially unchanged for over 440 million years; more closely related to spiders than true crabs.',
+      note: 'A living fossil essentially unchanged for over 440 million years; phylogenetically closer to chelicerates than true decapods.',
     },
     diet: {
       type: 'Carnivore',

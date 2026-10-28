@@ -3,6 +3,7 @@ import { BIRDS } from './animals_birds.js';
 import { REPTILES } from './animals_reptiles.js';
 import { AMPHIBIANS, FISH, INVERTEBRATES } from './animals_aquatic_inverts.js';
 import { EXTRA_ANIMALS } from './animals_extra.js';
+import { EXPANSION_ANIMALS } from './animals_expansion.js';
 import { ANIMAL_IMAGES } from './animal_images.js';
 
 // Combine all animal datasets into one master collection
@@ -13,7 +14,8 @@ const rawList = [
   ...AMPHIBIANS,
   ...FISH,
   ...INVERTEBRATES,
-  ...EXTRA_ANIMALS
+  ...EXTRA_ANIMALS,
+  ...EXPANSION_ANIMALS
 ];
 
 // Deduplicate by ID and attach verified resilient proxy image URLs

@@ -24,6 +24,7 @@ export function FootprintDisplay({ animal, dimensionUnit }) {
 
     switch (type) {
       case 'canid':
+      case 'canid_like':
         // Four symmetrical oval toes with distinct claw marks, single triangular heel pad
         return (
           <g transform="translate(100, 100)">
@@ -58,6 +59,9 @@ export function FootprintDisplay({ animal, dimensionUnit }) {
 
       case 'ursid':
       case 'ursid_mustelid':
+      case 'mustelid':
+      case 'carnivorous_marsupial':
+      case 'pinniped_mustelid':
         // Five rounded toes in gentle arc, long claw marks, wide plantigrade sole
         return (
           <g transform="translate(100, 105)">
@@ -152,6 +156,15 @@ export function FootprintDisplay({ animal, dimensionUnit }) {
         );
 
       case 'primate':
+      case 'amphibious_mammal':
+      case 'amphibious_rodent':
+      case 'monotreme':
+      case 'arboreal_marsupial':
+      case 'arboreal':
+      case 'small_carnivore':
+      case 'small_mammal':
+      case 'syndactyl':
+      case 'knuckle_claw':
         // Human/ape hand/foot with divergent opposable thumb/big toe
         return (
           <g transform="translate(100, 100)">
@@ -168,6 +181,7 @@ export function FootprintDisplay({ animal, dimensionUnit }) {
         );
 
       case 'avian_talon':
+      case 'avian_long_toed':
       case 'passerine':
         // Anisodactyl: 3 forward talons + 1 rear hallux with sharp needle tips
         return (
@@ -281,6 +295,10 @@ export function FootprintDisplay({ animal, dimensionUnit }) {
       case 'amphibian':
       case 'amphibian_jumping':
       case 'arboreal_frog':
+      case 'amphibian_aquatic':
+      case 'toad_track':
+      case 'salamander':
+      case 'giant_salamander':
         // 4 front digits, 5 hind with suction discs
         return (
           <g transform="translate(100, 100)">
@@ -299,6 +317,7 @@ export function FootprintDisplay({ animal, dimensionUnit }) {
         );
 
       case 'cephalopod':
+      case 'deep_ocean_spoor':
         // Circular suction cups in seabed silt
         return (
           <g transform="translate(100, 100)">
@@ -315,6 +334,9 @@ export function FootprintDisplay({ animal, dimensionUnit }) {
 
       case 'arachnid_track':
       case 'insect_track':
+      case 'crustacean_track':
+      case 'chelicerate_track':
+      case 'insect_perch':
         // Parallel stipple rows of tiny walking leg points
         return (
           <g transform="translate(100, 100)">
@@ -328,6 +350,37 @@ export function FootprintDisplay({ animal, dimensionUnit }) {
             ))}
             {/* Center stinger drag */}
             <line x1="0" y1="-60" x2="0" y2="70" stroke="rgba(62,39,35,0.3)" strokeWidth="2" strokeDasharray="3 3" />
+          </g>
+        );
+
+      case 'chelonian':
+      case 'marine_turtle':
+        // Round elephantine pad with blunt digging claws and plastron drag mark
+        return (
+          <g transform="translate(100, 100)">
+            <rect x="-40" y="-70" width="80" height="140" rx="25" fill="rgba(62, 39, 35, 0.12)" />
+            <circle cx="0" cy="15" r="30" fill={trackColor} />
+            {[-36, -18, 0, 18, 36].map((deg, i) => {
+              const x = Math.sin((deg * Math.PI) / 180) * 44;
+              const y = 15 - Math.cos((deg * Math.PI) / 180) * 44;
+              return <circle key={i} cx={x} cy={y} r="6" fill={secondaryColor} />;
+            })}
+          </g>
+        );
+
+      case 'marine_spoor':
+      case 'pelagic_wake':
+      case 'freshwater_spoor':
+      case 'coral_spoor':
+      case 'pinniped':
+        // Fluid hydrodynamic wake swirls, displacement ripples, and dive vortices
+        return (
+          <g transform="translate(100, 100)">
+            <path d="M-70,-40 C-30,-70 30,-10 70,-40" stroke="rgba(62, 39, 35, 0.4)" strokeWidth="4" fill="none" strokeDasharray="6 4" />
+            <path d="M-80,0 C-40,-30 40,30 80,0" stroke={trackColor} strokeWidth="5" fill="none" strokeLinecap="round" />
+            <path d="M-70,40 C-30,10 30,70 70,40" stroke="rgba(62, 39, 35, 0.4)" strokeWidth="4" fill="none" strokeDasharray="6 4" />
+            <circle cx="0" cy="0" r="14" stroke={secondaryColor} strokeWidth="3" fill="none" opacity="0.7" />
+            <circle cx="0" cy="0" r="4" fill={secondaryColor} />
           </g>
         );
 

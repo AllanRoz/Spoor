@@ -113,7 +113,7 @@ import('./src/utils/dimensions.js').then(({ formatDimension, getPerspectiveSpecs
     const converted = formatDimension(animal.footprint.dimensions, 'in');
     if (converted.includes('NaN')) allValid = false;
   });
-  assert(allValid, 'All 107 animal dimensions convert to inches without NaN');
+  assert(allValid, `All ${ANIMALS.length} animal dimensions convert to inches without NaN`);
 
   console.log(`\n=============================`);
   console.log(`Tests: ${passed} passed, ${failed} failed.`);

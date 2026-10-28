@@ -286,14 +286,14 @@ export const MAMMALS = [
       dimensions: 'Front: 25–30 cm wide; Hind: 35–42 cm long',
       description: 'Colossal saucer-like print with five toes, short thick claw marks, and dense papillae and fur impressions on the sole for traction on sea ice.',
       features: ['Five toe impressions', 'Broad snowshoe pads', 'Short curved claws', 'Fur-textured sole edges'],
-      trackNotes: 'Tracks are often bordered by wide body slides where the bear toboggans down snowbanks.',
+      trackNotes: 'Tracks are often bordered by wide body slides where the heavy animal toboggans down snowbanks.',
     },
     habitat: 'Circumpolar Arctic sea ice, pack-ice floes, polynyas, and coastal subarctic tundra.',
     size: {
       weight: '350–700 kg (770–1,540 lbs)',
       length: '240–300 cm (94–118 in)',
       heightOrWingspan: 'Shoulder height 130–160 cm (51–63 in)',
-      note: 'The largest land carnivore alongside the Kodiak bear.',
+      note: 'The largest extant terrestrial apex carnivore on Earth.',
     },
     diet: {
       type: 'Carnivore',
@@ -388,7 +388,7 @@ export const MAMMALS = [
       dimensions: '25–30 cm long, 25–28 cm wide',
       description: 'Deep, heavy impression showing four distinct, splayed symmetrical toes, each capped with a rounded nail-like hoof. Tracks create worn double-rutted trails on riverbanks.',
       features: ['Four symmetrical toes', 'Broad rounded nails', 'Deep riverbank path ruts', 'Semi-aquatic webbing trace'],
-      trackNotes: 'Creates iconic dual-trench "hippo highways" through reed beds by placing feet in exact habitual lines.',
+      trackNotes: 'Creates iconic dual-trench sunken highways through reed beds by placing feet in exact habitual lines.',
     },
     habitat: 'Rivers, lakes, and freshwater mangrove swamps bordered by open grazing meadows in Sub-Saharan Africa.',
     size: {
@@ -864,7 +864,7 @@ export const MAMMALS = [
       dimensions: '5–6 cm long, 3–4 cm wide',
       description: 'Small hand-like print with five slender digits. The hind foot displays a large opposable big toe and a specialized grooming claw on the second toe.',
       features: ['Five slender digits', 'Opposable big toe', 'Grooming claw impression', 'High ground-walking frequency'],
-      trackNotes: 'Most terrestrial of all lemurs; spends up to 33% of its time foraging on the forest floor.',
+      trackNotes: 'Most terrestrial of its island primate relatives; spends up to 33% of its daylight hours foraging on the forest floor.',
     },
     habitat: 'Spiny deciduous forests, dry gallery brush, and limestone canyons of southern and southwestern Madagascar.',
     size: {
@@ -900,7 +900,7 @@ export const MAMMALS = [
       features: ['Fully webbed five-toed hind foot', 'Small unwebbed front paws', 'Broad flat tail drag trough', 'Mud slide tracks'],
       trackNotes: 'Recognizable by canal paths leading into water and fresh peeled wood shavings nearby.',
     },
-    habitat: 'Forested rivers, lakes, ponds, marshlands, and beaver-made impoundments across North America.',
+    habitat: 'Forested rivers, lakes, ponds, marshlands, and self-engineered freshwater impoundments across North America.',
     size: {
       weight: '16–32 kg (35–70 lbs)',
       length: '90–115 cm (35–45 in) including tail',
@@ -1374,14 +1374,14 @@ export const MAMMALS = [
       dimensions: '7–9 cm long, 6–8 cm wide',
       description: 'Cloven hoof with two blunt, rounded main cleats, and almost ALWAYS shows two prominent dew claws positioned wide and low behind the main hooves.',
       features: ['Two rounded cloven cleats', 'Dew claws consistently register', 'Dew claws spread wider than main hooves', 'Mud wallow ruts'],
-      trackNotes: 'Unlike deer, wild boar dew claws register even on relatively hard, flat ground.',
+      trackNotes: 'Unlike deer and antelope, its low-set dew claws register even on relatively hard, flat ground.',
     },
     habitat: 'Deciduous oak and beech woodlands, marsh reed beds, farmlands, and riparian scrub across Eurasia and introduced elsewhere.',
     size: {
       weight: '60–150 kg (130–330 lbs)',
       length: '130–175 cm (51–69 in)',
       heightOrWingspan: 'Shoulder height 70–100 cm (28–39 in)',
-      note: 'Ancestor of nearly all domestic pig breeds.',
+      note: 'Ancestor of nearly all domestic swine breeds.',
     },
     diet: {
       type: 'Omnivore',
