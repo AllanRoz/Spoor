@@ -9,12 +9,14 @@ import {
   ArrowRight,
   ChevronRight,
   Compass,
-  AlertCircle
+  AlertCircle,
+  Lightbulb
 } from 'lucide-react';
 import { generateGamePool, GAME_MODES, getCluesForMode } from '../utils/gameGenerator.js';
 import { evaluateGuess } from '../utils/answerMatching.js';
 import { calculateRoundScore } from '../utils/scoring.js';
 import { playSound } from '../utils/sound.js';
+import { triggerHaptic } from '../utils/haptics.js';
 import {
   saveStoredStats,
   getStoredStats,
@@ -54,6 +56,10 @@ export function Game({ settings, stats, onUpdateStats }) {
   const [giveUpModalOpen, setGiveUpModalOpen] = useState(false);
   const [sessionFinished, setSessionFinished] = useState(false);
 
+  // Field Intuition Hint state
+  const [hintUsed, setHintUsed] = useState(false);
+  const [hintText, setHintText] = useState(null);
+
   // Initialize pool on mount
   useEffect(() => {
     const pool = generateGamePool({ category, habitat, difficulty });
@@ -63,6 +69,8 @@ export function Game({ settings, stats, onUpdateStats }) {
     setRoundCluesRevealed(1);
     setActiveClueTab(availableClues[0]?.id || 1);
     setWrongGuessesCount(0);
+    setHintUsed(false);
+    setHintText(null);
   }, [modeId, category, habitat, difficulty]);
 
   const currentAnimal = animalPool[currentIndex];
@@ -77,9 +85,25 @@ export function Game({ settings, stats, onUpdateStats }) {
     if (nextClue) {
       setRoundCluesRevealed(prev => prev + 1);
       setActiveClueTab(nextClue.id);
+      triggerHaptic('clue', settings.hapticsEnabled);
       playSound('clue_reveal', settings.soundEnabled);
       setFeedbackMessage(null);
     }
+  };
+
+  // Field Intuition hint handler
+  const handleRequestHint = () => {
+    if (hintUsed || !currentAnimal) return;
+    triggerHaptic('light', settings.hapticsEnabled);
+    playSound('hint', settings.soundEnabled);
+    setHintUsed(true);
+    const letters = currentAnimal.name.replace(/[^a-zA-Z]/g, '').length;
+    const fact = currentAnimal.funFacts?.[0] || `Native to ${currentAnimal.habitat}.`;
+    setHintText({
+      letter: currentAnimal.name[0].toUpperCase(),
+      length: letters,
+      fact: fact
+    });
   };
 
   // Submit guess handler
@@ -91,12 +115,14 @@ export function Game({ settings, stats, onUpdateStats }) {
     if (evaluation.status === 'EXACT') {
       handleSolveSuccess({ hasSpellingPenalty: false });
     } else if (evaluation.status === 'FUZZY') {
+      triggerHaptic('warning', settings.hapticsEnabled);
       setFuzzyModalData({
         suggestedName: evaluation.suggestedName,
         inputGuess: evaluation.inputGuess,
       });
     } else {
       // Wrong guess
+      triggerHaptic('wrong', settings.hapticsEnabled);
       playSound('wrong', settings.soundEnabled);
       const updatedAttempts = wrongGuessesCount + 1;
       setWrongGuessesCount(updatedAttempts);
@@ -109,13 +135,15 @@ export function Game({ settings, stats, onUpdateStats }) {
 
   // Handle successful solve
   const handleSolveSuccess = ({ hasSpellingPenalty }) => {
+    triggerHaptic('success', settings.hapticsEnabled);
     playSound('correct', settings.soundEnabled);
 
-    const pointsEarned = calculateRoundScore({
+    const rawPoints = calculateRoundScore({
       cluesRevealed: roundCluesRevealed,
       wrongGuessesCount,
       hasSpellingCorrection: hasSpellingPenalty,
     });
+    const pointsEarned = hintUsed ? Math.max(10, rawPoints - 5) : rawPoints;
 
     const newStreak = (stats.currentStreak || 0) + 1;
     const newHighestStreak = Math.max(newStreak, stats.highestStreak || 0);
@@ -194,6 +222,8 @@ export function Game({ settings, stats, onUpdateStats }) {
       setRoundCluesRevealed(1);
       setActiveClueTab(availableClues[0]?.id || 1);
       setWrongGuessesCount(0);
+      setHintUsed(false);
+      setHintText(null);
     }
   };
 
@@ -307,13 +337,26 @@ export function Game({ settings, stats, onUpdateStats }) {
       />
 
       {/* Active Clue Detail Card */}
-      <ClueCard activeClueId={activeClueTab} animal={currentAnimal} />
+      <ClueCard activeClueId={activeClueTab} animal={currentAnimal} dimensionUnit={settings?.dimensionUnit} />
 
       {/* Feedback Alert Toast */}
       {feedbackMessage && (
         <div className="p-3 rounded-2xl bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900/60 text-xs sm:text-sm text-red-800 dark:text-red-300 font-medium text-center animate-fade-in flex items-center justify-center gap-2">
           <AlertCircle className="w-4 h-4 flex-shrink-0" />
           <span>{feedbackMessage.text}</span>
+        </div>
+      )}
+
+      {/* Tracker's Intuition Hint Card (if revealed) */}
+      {hintText && (
+        <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-900 dark:text-amber-200 animate-fade-in space-y-1">
+          <div className="flex items-center gap-2 font-bold uppercase tracking-wider text-[11px] text-amber-700 dark:text-amber-400">
+            <Lightbulb className="w-3.5 h-3.5" />
+            <span>Tracker's Field Intuition (-5 pts)</span>
+          </div>
+          <p className="leading-relaxed">
+            Name starts with <strong>"{hintText.letter}"</strong> ({hintText.length} total letters). <em>{hintText.fact}</em>
+          </p>
         </div>
       )}
 
@@ -332,12 +375,12 @@ export function Game({ settings, stats, onUpdateStats }) {
       </div>
 
       {/* Clue Control Buttons */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 pt-2">
         {canRevealNext ? (
           <button
             type="button"
             onClick={handleRevealNextClue}
-            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-journal-200 hover:bg-journal-300 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-100 font-bold text-sm flex items-center justify-center gap-2 active:scale-95 transition-all shadow-sm"
+            className="w-full sm:w-auto px-5 py-3 rounded-xl bg-journal-200 hover:bg-journal-300 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-100 font-bold text-sm flex items-center justify-center gap-2 active:scale-95 transition-all shadow-sm"
           >
             <Eye className="w-4 h-4 text-amber-600 dark:text-amber-400" />
             <span>Reveal Next Clue</span>
@@ -351,9 +394,25 @@ export function Game({ settings, stats, onUpdateStats }) {
           </span>
         )}
 
+        {/* Tracker's Intuition Hint Button */}
+        {!hintUsed && (
+          <button
+            type="button"
+            onClick={handleRequestHint}
+            className="w-full sm:w-auto px-4 py-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-600/30 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors"
+            title="Get a subtle field hint (-5 pts)"
+          >
+            <Lightbulb className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+            <span>Field Intuition</span>
+          </button>
+        )}
+
         <button
           type="button"
-          onClick={handleGiveUp}
+          onClick={() => {
+            triggerHaptic('warning', settings.hapticsEnabled);
+            handleGiveUp();
+          }}
           className="text-xs font-semibold text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200 hover:underline py-2 px-3 transition-colors"
         >
           Give Up / Reveal Answer

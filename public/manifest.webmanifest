@@ -1,0 +1,87 @@
+{
+  "id": "spoor-wildlife-tracking",
+  "name": "SPOOR: Mystery Animal Tracking",
+  "short_name": "Spoor",
+  "description": "Mystery wildlife tracking detective game. Follow authentic animal tracks, habitats, sizes, and feeding habits to identify creatures across the globe.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "window-controls-overlay"],
+  "orientation": "any",
+  "background_color": "#0c1613",
+  "theme_color": "#102119",
+  "categories": ["games", "education"],
+  "lang": "en",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "./icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icons/icon-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Daily Spoor",
+      "short_name": "Daily",
+      "description": "Play today's worldwide mystery animal puzzle",
+      "url": "./#/daily",
+      "icons": [
+        {
+          "src": "./icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Quick Game",
+      "short_name": "Play",
+      "description": "Start tracking a mystery animal",
+      "url": "./#/play",
+      "icons": [
+        {
+          "src": "./icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "My Field Guide",
+      "short_name": "Field Guide",
+      "description": "View your discovered wildlife species collection",
+      "url": "./#/field-guide",
+      "icons": [
+        {
+          "src": "./icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

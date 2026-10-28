@@ -3,7 +3,7 @@ import { FootprintDisplay } from './FootprintDisplay.jsx';
 import { AnimalImage } from './AnimalImage.jsx';
 import { Globe2, Ruler, Beef, Footprints, Image as ImageIcon, MapPin } from 'lucide-react';
 
-export function ClueCard({ activeClueId, animal }) {
+export function ClueCard({ activeClueId, animal, dimensionUnit }) {
   if (!animal) return null;
 
   return (
@@ -17,7 +17,7 @@ export function ClueCard({ activeClueId, animal }) {
               Clue 1 — Animal Spoor
             </h3>
           </div>
-          <FootprintDisplay animal={animal} />
+          <FootprintDisplay animal={animal} dimensionUnit={dimensionUnit} />
         </div>
       )}
 

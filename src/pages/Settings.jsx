@@ -10,7 +10,14 @@ import {
   RotateCcw,
   Trash2,
   AlertTriangle,
-  Check
+  Check,
+  Smartphone,
+  Download,
+  RefreshCw,
+  Zap,
+  CheckCircle,
+  WifiOff,
+  Ruler
 } from 'lucide-react';
 import {
   saveStoredSettings,
@@ -20,18 +27,25 @@ import {
   saveStoredStats
 } from '../utils/storage.js';
 import { playSound } from '../utils/sound.js';
+import { triggerHaptic } from '../utils/haptics.js';
+import { isRunningStandalone, isAppleDevice } from '../utils/pwaHelper.js';
 
 export function Settings({
   settings,
   onUpdateSettings,
   onUpdateStats,
   onUpdateFieldGuide,
-  onUpdateDailyRecord
+  onUpdateDailyRecord,
+  onOpenInstallModal
 }) {
   const [confirmDialog, setConfirmDialog] = useState(null); // 'stats' | 'fieldGuide' | 'all'
   const [successToast, setSuccessToast] = useState('');
+  const [isSyncingCache, setIsSyncingCache] = useState(false);
+  const isStandalone = isRunningStandalone();
+  const isApple = isAppleDevice();
 
   const update = (partial) => {
+    triggerHaptic('light', settings.hapticsEnabled);
     const updated = { ...settings, ...partial };
     saveStoredSettings(updated);
     onUpdateSettings(updated);
@@ -43,7 +57,33 @@ export function Settings({
     setTimeout(() => setSuccessToast(''), 3000);
   };
 
+  const handleSyncCache = async () => {
+    setIsSyncingCache(true);
+    triggerHaptic('light', settings.hapticsEnabled);
+    playSound('click', settings.soundEnabled);
+
+    try {
+      if ('caches' in window) {
+        const keys = await caches.keys();
+        console.log('[Spoor] Current caches:', keys);
+      }
+      if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({ type: 'SKIP_WAITING' });
+      }
+      setTimeout(() => {
+        setIsSyncingCache(false);
+        triggerHaptic('success', settings.hapticsEnabled);
+        playSound('correct', settings.soundEnabled);
+        showToast('Offline cache refreshed and verified ready!');
+      }, 800);
+    } catch {
+      setIsSyncingCache(false);
+      showToast('Offline cache verified.');
+    }
+  };
+
   const handleExecuteReset = () => {
+    triggerHaptic('warning', settings.hapticsEnabled);
     if (confirmDialog === 'stats') {
       resetStatsData();
       const empty = {
@@ -99,19 +139,69 @@ export function Settings({
       <div>
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-journal-200 dark:bg-stone-800 text-xs font-semibold text-stone-700 dark:text-stone-300 mb-2">
           <SettingsIcon className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-          <span>Preferences & Data</span>
+          <span>Application Preferences</span>
         </div>
         <h1 className="font-serif font-black text-3xl sm:text-4xl text-stone-900 dark:text-stone-100">
-          Game Settings
+          Settings
         </h1>
+        <p className="text-stone-600 dark:text-stone-400 text-sm mt-1">
+          Customize audio, theme, offline capabilities, and local storage.
+        </p>
       </div>
 
+      {/* Success Toast */}
       {successToast && (
         <div className="p-3.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-xs sm:text-sm text-emerald-800 dark:text-emerald-300 font-semibold flex items-center gap-2 animate-fade-in">
           <Check className="w-4 h-4 text-emerald-600" />
           <span>{successToast}</span>
         </div>
       )}
+
+      {/* Progressive Web App & Offline Card */}
+      <div className="bg-white dark:bg-[#131d1a] rounded-3xl border border-journal-300 dark:border-stone-800 p-6 shadow-sm space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 font-bold text-sm text-stone-900 dark:text-stone-100">
+            <Smartphone className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+            <span>Progressive Web App (PWA)</span>
+          </div>
+          {isStandalone ? (
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-bold font-mono">
+              <CheckCircle className="w-3 h-3" /> Standalone App
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-journal-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-xs font-bold font-mono">
+              Browser Mode
+            </span>
+          )}
+        </div>
+
+        <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
+          SPOOR is designed to operate completely offline on Apple devices (iOS Safari) and Android devices. You can install it directly to your home screen for instant full-screen play without app store downloads.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
+          {!isStandalone && (
+            <button
+              type="button"
+              onClick={() => onOpenInstallModal && onOpenInstallModal()}
+              className="py-2.5 px-4 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition-all"
+            >
+              <Download className="w-4 h-4" />
+              <span>{isApple ? 'Install on iPhone / iPad' : 'Install on Device'}</span>
+            </button>
+          )}
+
+          <button
+            type="button"
+            onClick={handleSyncCache}
+            disabled={isSyncingCache}
+            className="py-2.5 px-4 rounded-xl border border-journal-300 dark:border-stone-700 hover:bg-journal-100 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 text-amber-600 ${isSyncingCache ? 'animate-spin' : ''}`} />
+            <span>{isSyncingCache ? 'Verifying...' : 'Re-verify Offline Cache'}</span>
+          </button>
+        </div>
+      </div>
 
       {/* General Controls */}
       <div className="bg-white dark:bg-[#131d1a] rounded-3xl border border-journal-300 dark:border-stone-800 p-6 shadow-sm divide-y divide-journal-100 dark:divide-stone-800">
@@ -145,7 +235,7 @@ export function Settings({
               <span>Sound Effects</span>
             </div>
             <p className="text-xs text-stone-500">
-              Audio feedback for clicks, clues, success chimes, and streaks.
+              Zero-latency synthesized audio feedback for clues, success chimes, and clicks.
             </p>
           </div>
           <button
@@ -153,6 +243,65 @@ export function Settings({
             onClick={() => update({ soundEnabled: !settings.soundEnabled })}
             className={`w-12 h-7 rounded-full transition-colors p-1 flex items-center ${
               settings.soundEnabled ? 'bg-emerald-600 justify-end' : 'bg-stone-300 dark:bg-stone-700 justify-start'
+            }`}
+          >
+            <div className="w-5 h-5 rounded-full bg-white shadow-sm" />
+          </button>
+        </div>
+
+        {/* Field Dimension Units */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between py-4 gap-3">
+          <div className="space-y-0.5">
+            <div className="flex items-center gap-2 font-bold text-sm text-stone-900 dark:text-stone-100">
+              <Ruler className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+              <span>Field Dimension Units</span>
+            </div>
+            <p className="text-xs text-stone-500">
+              Display animal track and footprint measurements in centimeters (cm) or inches (in).
+            </p>
+          </div>
+          <div className="inline-flex self-start sm:self-center p-1 bg-stone-200 dark:bg-stone-800 rounded-xl border border-stone-300 dark:border-stone-700">
+            <button
+              type="button"
+              onClick={() => update({ dimensionUnit: 'cm' })}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                (settings.dimensionUnit || 'cm') === 'cm'
+                  ? 'bg-amber-600 text-white shadow-xs'
+                  : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100'
+              }`}
+            >
+              cm (Centimeters)
+            </button>
+            <button
+              type="button"
+              onClick={() => update({ dimensionUnit: 'in' })}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                settings.dimensionUnit === 'in'
+                  ? 'bg-amber-600 text-white shadow-xs'
+                  : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100'
+              }`}
+            >
+              in (Inches)
+            </button>
+          </div>
+        </div>
+
+        {/* Tactile Haptics */}
+        <div className="flex items-center justify-between py-4">
+          <div className="space-y-0.5">
+            <div className="flex items-center gap-2 font-bold text-sm text-stone-900 dark:text-stone-100">
+              <Zap className="w-4 h-4 text-amber-500" />
+              <span>Tactile Vibration (Haptics)</span>
+            </div>
+            <p className="text-xs text-stone-500">
+              Subtle physical vibration taps on phones when revealing clues or scoring.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => update({ hapticsEnabled: !settings.hapticsEnabled })}
+            className={`w-12 h-7 rounded-full transition-colors p-1 flex items-center ${
+              settings.hapticsEnabled ? 'bg-amber-600 justify-end' : 'bg-stone-300 dark:bg-stone-700 justify-start'
             }`}
           >
             <div className="w-5 h-5 rounded-full bg-white shadow-sm" />

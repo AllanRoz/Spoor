@@ -10,8 +10,11 @@ const STORAGE_KEYS = {
 const DEFAULT_SETTINGS = {
   darkMode: false,
   soundEnabled: true,
+  hapticsEnabled: true,
   animationsEnabled: true,
   confirmLeave: true,
+  scalePerspective: 'hand', // 'none' | 'hand' | 'boot' | 'coin'
+  dimensionUnit: 'cm', // 'cm' | 'in'
 };
 
 const DEFAULT_STATS = {

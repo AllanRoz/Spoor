@@ -1,14 +1,20 @@
-import React from 'react';
-import { Ruler, Sparkles, Compass } from 'lucide-react';
+import React, { useState } from 'react';
+import { Ruler, Sparkles, Compass, Hand, Footprints, CircleDot, Eye } from 'lucide-react';
+import { formatDimension, getPerspectiveSpecs } from '../utils/dimensions.js';
+import { getStoredSettings } from '../utils/storage.js';
 
 /**
  * Procedural authentic SVG footprint visualizer for Spoor.
  * Renders biologically accurate animal tracks with field scale and substrate texture.
  */
-export function FootprintDisplay({ animal }) {
+export function FootprintDisplay({ animal, dimensionUnit }) {
+  const [perspective, setPerspective] = useState('none'); // 'none' | 'hand' | 'boot' | 'coin'
   if (!animal || !animal.footprint) return null;
 
   const { type, dimensions, description, features, trackNotes } = animal.footprint;
+  const activeUnit = dimensionUnit || getStoredSettings().dimensionUnit || 'cm';
+  const specs = getPerspectiveSpecs(activeUnit);
+  const formattedDimension = formatDimension(dimensions, activeUnit);
 
   // Render authentic vector tracks based on biological footprint type
   const renderTrackSvg = () => {
@@ -338,6 +344,74 @@ export function FootprintDisplay({ animal }) {
     }
   };
 
+  // Render scale perspective comparison overlay (hand, boot, coin)
+  const renderPerspectiveOverlay = () => {
+    if (perspective === 'none') return null;
+
+    if (perspective === 'hand') {
+      // Human Hand (avg 19 cm tall) silhouette overlay
+      return (
+        <g opacity="0.65" className="animate-fade-in pointer-events-none">
+          {/* Hand Palm and Fingers */}
+          <path
+            d="M 60,160 C 60,120 70,110 70,85 C 70,72 76,72 76,85 L 77,105 L 88,60 C 90,48 98,48 99,60 L 102,105 L 112,65 C 114,54 122,54 123,65 L 124,110 L 133,80 C 135,70 143,72 143,84 C 142,105 140,125 135,160 Z"
+            fill="rgba(217, 119, 6, 0.14)"
+            stroke="#d97706"
+            strokeWidth="2"
+            strokeDasharray="4 3"
+          />
+          {/* Thumb */}
+          <path
+            d="M 70,125 C 50,115 42,100 48,92 C 54,85 64,102 72,112 Z"
+            fill="rgba(217, 119, 6, 0.14)"
+            stroke="#d97706"
+            strokeWidth="2"
+            strokeDasharray="4 3"
+          />
+          <text x="100" y="180" textAnchor="middle" fill="#d97706" fontSize="10" fontWeight="bold" fontFamily="monospace">
+            {specs.hand.svgLabel}
+          </text>
+        </g>
+      );
+    }
+
+    if (perspective === 'boot') {
+      // Hiking Boot silhouette overlay
+      return (
+        <g opacity="0.6" className="animate-fade-in pointer-events-none">
+          <path
+            d="M 65,30 C 90,25 125,25 135,40 C 145,60 145,100 135,120 C 128,135 125,145 130,165 C 130,178 120,185 100,185 C 80,185 70,178 70,165 C 75,145 72,135 65,120 C 55,100 55,60 65,30 Z"
+            fill="rgba(100, 116, 139, 0.16)"
+            stroke="#64748b"
+            strokeWidth="2"
+            strokeDasharray="4 3"
+          />
+          {/* Boot Sole Lugs */}
+          {[-40, -15, 10, 45].map((y, i) => (
+            <line key={i} x1="75" y1={100 + y} x2="125" y2={100 + y} stroke="#64748b" strokeWidth="2" strokeDasharray="2 3" opacity="0.5" />
+          ))}
+          <text x="100" y="197" textAnchor="middle" fill="#64748b" fontSize="9" fontWeight="bold" fontFamily="monospace">
+            {specs.boot.svgLabel}
+          </text>
+        </g>
+      );
+    }
+
+    if (perspective === 'coin') {
+      // Standard coin comparison
+      return (
+        <g opacity="0.85" className="animate-fade-in pointer-events-none">
+          <circle cx="160" cy="40" r="18" fill="rgba(234, 179, 8, 0.2)" stroke="#eab308" strokeWidth="2" strokeDasharray="3 3" />
+          <text x="160" y="44" textAnchor="middle" fill="#ca8a04" fontSize="8" fontWeight="bold" fontFamily="monospace">
+            {specs.coin.svgLabel}
+          </text>
+        </g>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <div className="w-full flex flex-col items-center">
       {/* Substrate Canvas Box with natural earth/sand texture */}
@@ -355,12 +429,13 @@ export function FootprintDisplay({ animal }) {
         {/* Compass watermark in background */}
         <Compass className="absolute -bottom-6 -right-6 w-32 h-32 text-amber-900/10 dark:text-emerald-500/10 pointer-events-none" />
 
-        {/* The Track Vector */}
+        {/* The Track Vector + Perspective Comparison Overlay */}
         <svg
           viewBox="0 0 200 200"
-          className="w-full h-full max-w-[240px] max-h-[240px] drop-shadow-md z-10 transition-transform duration-300 hover:scale-105"
+          className="w-full h-full max-w-[240px] max-h-[240px] drop-shadow-md z-10 transition-transform duration-300"
         >
           {renderTrackSvg()}
+          {renderPerspectiveOverlay()}
         </svg>
 
         {/* Physical Scale Ruler Indicator */}
@@ -369,8 +444,62 @@ export function FootprintDisplay({ animal }) {
             <Ruler className="w-3.5 h-3.5" />
             Field Dimension:
           </span>
-          <span className="font-bold tracking-tight">{dimensions}</span>
+          <span className="font-bold tracking-tight">{formattedDimension}</span>
         </div>
+      </div>
+
+      {/* Scale Perspective Comparison Toggles */}
+      <div className="mt-2.5 flex items-center gap-1 bg-journal-100 dark:bg-stone-900/70 p-1 rounded-xl border border-journal-200 dark:border-stone-800 text-[11px] font-medium">
+        <span className="px-2 text-stone-500 text-[10px] uppercase font-bold tracking-wider">
+          Compare Scale:
+        </span>
+        <button
+          type="button"
+          onClick={() => setPerspective('none')}
+          className={`px-2 py-0.5 rounded-lg transition-colors ${
+            perspective === 'none'
+              ? 'bg-white dark:bg-stone-800 text-amber-700 dark:text-amber-400 font-bold shadow-xs'
+              : 'text-stone-600 dark:text-stone-400 hover:text-stone-900'
+          }`}
+        >
+          Track Only
+        </button>
+        <button
+          type="button"
+          onClick={() => setPerspective(perspective === 'hand' ? 'none' : 'hand')}
+          className={`flex items-center gap-1 px-2 py-0.5 rounded-lg transition-colors ${
+            perspective === 'hand'
+              ? 'bg-amber-600 text-white font-bold shadow-xs'
+              : 'text-stone-600 dark:text-stone-400 hover:text-stone-900'
+          }`}
+          title={specs.hand.title}
+        >
+          <span>{specs.hand.button}</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => setPerspective(perspective === 'boot' ? 'none' : 'boot')}
+          className={`flex items-center gap-1 px-2 py-0.5 rounded-lg transition-colors ${
+            perspective === 'boot'
+              ? 'bg-amber-600 text-white font-bold shadow-xs'
+              : 'text-stone-600 dark:text-stone-400 hover:text-stone-900'
+          }`}
+          title={specs.boot.title}
+        >
+          <span>{specs.boot.button}</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => setPerspective(perspective === 'coin' ? 'none' : 'coin')}
+          className={`flex items-center gap-1 px-2 py-0.5 rounded-lg transition-colors ${
+            perspective === 'coin'
+              ? 'bg-amber-600 text-white font-bold shadow-xs'
+              : 'text-stone-600 dark:text-stone-400 hover:text-stone-900'
+          }`}
+          title={specs.coin.title}
+        >
+          <span>{specs.coin.button}</span>
+        </button>
       </div>
 
       {/* Biological Features Badges */}

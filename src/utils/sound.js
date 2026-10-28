@@ -12,9 +12,27 @@ function getAudioContext() {
     }
   }
   if (audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume();
+    audioCtx.resume().catch(() => {});
   }
   return audioCtx;
+}
+
+// Automatically unlock AudioContext on the first user interaction (crucial for iOS Safari)
+if (typeof window !== 'undefined') {
+  const unlockAudio = () => {
+    try {
+      const ctx = getAudioContext();
+      if (ctx && ctx.state === 'suspended') {
+        ctx.resume();
+      }
+    } catch {
+      // Ignore
+    }
+  };
+
+  window.addEventListener('touchstart', unlockAudio, { once: true, passive: true });
+  window.addEventListener('touchend', unlockAudio, { once: true, passive: true });
+  window.addEventListener('click', unlockAudio, { once: true, passive: true });
 }
 
 export const playSound = (type, isEnabled = true) => {
@@ -87,6 +105,22 @@ export const playSound = (type, isEnabled = true) => {
       gain.connect(ctx.destination);
       osc.start(now);
       osc.stop(now + 0.04);
+    } else if (type === 'hint') {
+      // Mystical intuitive harp shimmer
+      [440, 554.37, 659.25, 880].forEach((f, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(f, now + idx * 0.05);
+
+        gain.gain.setValueAtTime(0.12, now + idx * 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.25);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now + idx * 0.05);
+        osc.stop(now + idx * 0.05 + 0.26);
+      });
     } else if (type === 'streak') {
       // High energetic chime
       [880, 1174.66, 1318.51].forEach((f, idx) => {

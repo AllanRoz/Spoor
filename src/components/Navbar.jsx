@@ -12,15 +12,21 @@ import {
   Moon,
   Flame,
   Menu,
-  X
+  X,
+  Download,
+  Smartphone
 } from 'lucide-react';
 import { playSound } from '../utils/sound.js';
+import { triggerHaptic } from '../utils/haptics.js';
+import { isRunningStandalone } from '../utils/pwaHelper.js';
 
-export function Navbar({ settings, onUpdateSettings, currentStreak = 0 }) {
+export function Navbar({ settings, onUpdateSettings, currentStreak = 0, onOpenInstallModal }) {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isStandalone = isRunningStandalone();
 
   const toggleSound = () => {
+    triggerHaptic('light', settings.hapticsEnabled);
     const updated = { ...settings, soundEnabled: !settings.soundEnabled };
     onUpdateSettings(updated);
     if (!settings.soundEnabled) {
@@ -29,6 +35,7 @@ export function Navbar({ settings, onUpdateSettings, currentStreak = 0 }) {
   };
 
   const toggleTheme = () => {
+    triggerHaptic('light', settings.hapticsEnabled);
     const updated = { ...settings, darkMode: !settings.darkMode };
     onUpdateSettings(updated);
     playSound('click', settings.soundEnabled);
@@ -43,8 +50,15 @@ export function Navbar({ settings, onUpdateSettings, currentStreak = 0 }) {
   ];
 
   const handleLinkClick = () => {
+    triggerHaptic('light', settings.hapticsEnabled);
     playSound('click', settings.soundEnabled);
     setMobileMenuOpen(false);
+  };
+
+  const handleInstallClick = () => {
+    triggerHaptic('light', settings.hapticsEnabled);
+    playSound('click', settings.soundEnabled);
+    if (onOpenInstallModal) onOpenInstallModal();
   };
 
   return (
@@ -92,13 +106,27 @@ export function Navbar({ settings, onUpdateSettings, currentStreak = 0 }) {
           })}
         </nav>
 
-        {/* Right Tools (Streak, Sound, Theme, Mobile toggle) */}
-        <div className="flex items-center gap-2">
+        {/* Right Tools (Install button, Streak, Sound, Theme, Mobile toggle) */}
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* PWA Install Button (Prompt or Instructions) */}
+          {!isStandalone && (
+            <button
+              type="button"
+              onClick={handleInstallClick}
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-amber-600/10 hover:bg-amber-600/20 text-amber-700 dark:text-amber-400 border border-amber-600/30 text-xs font-bold transition-all hover:scale-105"
+              title="Install Spoor as an offline app"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Install App</span>
+              <span className="sm:hidden">App</span>
+            </button>
+          )}
+
           {/* Streak Badge */}
           {currentStreak > 0 && (
             <div
               title="Current Spoor Streak"
-              className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-amber-100/90 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 text-amber-800 dark:text-amber-300 text-xs font-bold font-mono"
+              className="flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-xl bg-amber-100/90 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 text-amber-800 dark:text-amber-300 text-xs font-bold font-mono"
             >
               <Flame className="w-3.5 h-3.5 fill-amber-500 text-amber-500 animate-pulse-subtle" />
               <span>{currentStreak}</span>
@@ -138,7 +166,10 @@ export function Navbar({ settings, onUpdateSettings, currentStreak = 0 }) {
           {/* Mobile Menu Button */}
           <button
             type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => {
+              triggerHaptic('light', settings.hapticsEnabled);
+              setMobileMenuOpen(!mobileMenuOpen);
+            }}
             className="md:hidden p-2 rounded-xl text-stone-600 dark:text-stone-300 hover:bg-journal-200 dark:hover:bg-stone-800 transition-colors"
             aria-label="Toggle navigation menu"
           >
@@ -170,6 +201,19 @@ export function Navbar({ settings, onUpdateSettings, currentStreak = 0 }) {
                 </Link>
               );
             })}
+            {!isStandalone && (
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  handleInstallClick();
+                }}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-amber-700 dark:text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 text-left mt-2 transition-colors"
+              >
+                <Download className="w-5 h-5" />
+                <span>Install Spoor App (Offline)</span>
+              </button>
+            )}
           </nav>
         </div>
       )}

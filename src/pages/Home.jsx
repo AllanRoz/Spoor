@@ -11,14 +11,21 @@ import {
   CheckCircle2,
   Sparkles,
   Search,
-  ShieldAlert
+  ShieldAlert,
+  Smartphone,
+  Download,
+  WifiOff
 } from 'lucide-react';
 import { getUtcDateKey, getFormattedDate, getDailyPuzzleNumber } from '../utils/dailySpoor.js';
 import { GAME_MODES } from '../utils/gameGenerator.js';
 import { playSound } from '../utils/sound.js';
+import { triggerHaptic } from '../utils/haptics.js';
 import { ANIMALS } from '../data/animals.js';
+import { isRunningStandalone, isAppleDevice } from '../utils/pwaHelper.js';
 
-export function Home({ stats, fieldGuide, dailyRecord, settings }) {
+export function Home({ stats, fieldGuide, dailyRecord, settings, onOpenInstallModal }) {
+  const isStandalone = isRunningStandalone();
+  const isApple = isAppleDevice();
   const todayKey = getUtcDateKey();
   const formattedToday = getFormattedDate(todayKey);
   const dailyNum = getDailyPuzzleNumber(todayKey);
@@ -79,6 +86,44 @@ export function Home({ stats, fieldGuide, dailyRecord, settings }) {
             )}
           </Link>
         </div>
+
+        {/* PWA Offline Installation Invitation Banner (Shown when not standalone) */}
+        {!isStandalone && (
+          <div className="pt-2 max-w-xl mx-auto">
+            <button
+              type="button"
+              onClick={() => {
+                triggerHaptic('light', settings.hapticsEnabled);
+                playSound('click', settings.soundEnabled);
+                if (onOpenInstallModal) onOpenInstallModal();
+              }}
+              className="w-full p-3 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-amber-500/10 hover:from-amber-500/20 hover:via-emerald-500/20 hover:to-amber-500/20 border border-amber-600/30 text-stone-800 dark:text-stone-200 flex items-center justify-between gap-3 text-left transition-all shadow-sm hover:scale-[1.01]"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                  <Smartphone className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-xs sm:text-sm text-stone-900 dark:text-stone-100">
+                      Install SPOOR on {isApple ? 'iPhone & iPad' : 'Your Device'}
+                    </span>
+                    <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.2 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold">
+                      <WifiOff className="w-2.5 h-2.5" /> 100% Offline
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-stone-500 dark:text-stone-400">
+                    Add to home screen for fast fullscreen wildlife tracking anywhere.
+                  </p>
+                </div>
+              </div>
+              <div className="shrink-0 p-2 rounded-xl bg-amber-600 text-white font-bold text-xs flex items-center gap-1 shadow-sm">
+                <Download className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Install</span>
+              </div>
+            </button>
+          </div>
+        )}
       </section>
 
       {/* Daily Spoor Spotlight Card */}

@@ -89,10 +89,37 @@ assert(quickClues.length === 3, 'Quick mode has exactly 3 clues');
 const expertClues = getCluesForMode('expert');
 assert(expertClues.length === 3 && !expertClues.some(c => c.id === 5), 'Expert mode has no image clue');
 
-console.log(`\n=============================`);
-console.log(`Tests: ${passed} passed, ${failed} failed.`);
-console.log(`=============================`);
+console.log('\n--- 6. Testing Dimension Unit Conversion ---');
+import('./src/utils/dimensions.js').then(({ formatDimension, getPerspectiveSpecs }) => {
+  const metricSample = '11–13 cm long, 9–11 cm wide';
+  assert(formatDimension(metricSample, 'cm') === metricSample, 'Metric dimensions remain intact in cm mode');
 
-if (failed > 0) {
-  process.exit(1);
-}
+  const inchSample = formatDimension(metricSample, 'in');
+  assert(inchSample === '4.3–5.1 in long, 3.5–4.3 in wide', `Correctly converts cm range to inches: "${inchSample}"`);
+
+  const singleCm = formatDimension('30 cm across', 'in');
+  assert(singleCm === '11.8 in across', `Correctly converts single cm to inches: "${singleCm}"`);
+
+  const orcaSample = formatDimension('Dorsal fin height up to 1.8 meters (6 ft)', 'in');
+  assert(orcaSample === 'Dorsal fin height up to 6 ft', `Correctly extracts parenthetical imperial note: "${orcaSample}"`);
+
+  const specsCm = getPerspectiveSpecs('cm');
+  const specsIn = getPerspectiveSpecs('in');
+  assert(specsCm.hand.svgLabel === 'Hand (19cm)' && specsIn.hand.svgLabel === 'Hand (7.5 in)', 'Perspective specs adjust per unit');
+
+  // Verify all 107 animals can be converted to inches without NaN
+  let allValid = true;
+  ANIMALS.forEach(animal => {
+    const converted = formatDimension(animal.footprint.dimensions, 'in');
+    if (converted.includes('NaN')) allValid = false;
+  });
+  assert(allValid, 'All 107 animal dimensions convert to inches without NaN');
+
+  console.log(`\n=============================`);
+  console.log(`Tests: ${passed} passed, ${failed} failed.`);
+  console.log(`=============================`);
+
+  if (failed > 0) {
+    process.exit(1);
+  }
+});

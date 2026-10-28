@@ -9,6 +9,9 @@ import {
 } from './utils/storage.js';
 import { Navbar } from './components/Navbar.jsx';
 import { Footer } from './components/Footer.jsx';
+import { MobileBottomNav } from './components/MobileBottomNav.jsx';
+import { OfflineBadge } from './components/OfflineBadge.jsx';
+import { PwaInstallModal } from './components/PwaInstallModal.jsx';
 import { Home } from './pages/Home.jsx';
 import { Setup } from './pages/Setup.jsx';
 import { Game } from './pages/Game.jsx';
@@ -22,6 +25,7 @@ export default function App() {
   const [stats, setStats] = useState(getStoredStats);
   const [fieldGuide, setFieldGuide] = useState(getStoredFieldGuide);
   const [dailyRecord, setDailyRecord] = useState(getStoredDaily);
+  const [installModalOpen, setInstallModalOpen] = useState(false);
 
   // Sync dark mode class on <html> element
   useEffect(() => {
@@ -44,10 +48,11 @@ export default function App() {
         settings={settings}
         onUpdateSettings={handleUpdateSettings}
         currentStreak={stats.currentStreak || 0}
+        onOpenInstallModal={() => setInstallModalOpen(true)}
       />
 
-      {/* Main Page Routing */}
-      <main className="flex-1 flex flex-col">
+      {/* Main Page Routing with bottom clearance for mobile nav */}
+      <main className="flex-1 flex flex-col pb-16 md:pb-6">
         <Routes>
           <Route
             path="/"
@@ -57,6 +62,7 @@ export default function App() {
                 fieldGuide={fieldGuide}
                 dailyRecord={dailyRecord}
                 settings={settings}
+                onOpenInstallModal={() => setInstallModalOpen(true)}
               />
             }
           />
@@ -114,6 +120,7 @@ export default function App() {
                 onUpdateStats={setStats}
                 onUpdateFieldGuide={setFieldGuide}
                 onUpdateDailyRecord={setDailyRecord}
+                onOpenInstallModal={() => setInstallModalOpen(true)}
               />
             }
           />
@@ -121,8 +128,23 @@ export default function App() {
         </Routes>
       </main>
 
-      {/* Footer */}
-      <Footer />
+      {/* Footer (hidden on small mobile screens to keep view clean, visible on md+) */}
+      <div className="hidden md:block">
+        <Footer />
+      </div>
+
+      {/* Mobile Bottom Navigation Bar (Thumb reach for iOS & Android) */}
+      <MobileBottomNav settings={settings} />
+
+      {/* Discrete Offline Status Toast / Banner */}
+      <OfflineBadge />
+
+      {/* PWA Install Modal for iOS and Android */}
+      <PwaInstallModal
+        isOpen={installModalOpen}
+        onClose={() => setInstallModalOpen(false)}
+        settings={settings}
+      />
     </div>
   );
 }

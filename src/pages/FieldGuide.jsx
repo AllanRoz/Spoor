@@ -11,26 +11,33 @@ import {
   Globe2,
   Ruler,
   Beef,
-  MapPin
+  MapPin,
+  Shuffle
 } from 'lucide-react';
 import { ANIMALS, CATEGORIES, HABITATS } from '../data/animals.js';
 import { FootprintDisplay } from '../components/FootprintDisplay.jsx';
 import { AnimalImage } from '../components/AnimalImage.jsx';
 import { playSound } from '../utils/sound.js';
+import { triggerHaptic } from '../utils/haptics.js';
 
 export function FieldGuide({ fieldGuide, settings }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Animals');
   const [selectedHabitat, setSelectedHabitat] = useState('All Habitats');
+  const [statusFilter, setStatusFilter] = useState('all'); // 'all' | 'discovered' | 'undiscovered'
   const [inspectAnimal, setInspectAnimal] = useState(null);
 
   const discoveredCount = Object.keys(fieldGuide).length;
   const totalCount = ANIMALS.length;
   const progressPercent = Math.round((discoveredCount / totalCount) * 100) || 0;
 
-  // Filter animals based on search, category, habitat
+  // Filter animals based on search, category, habitat, and discovery status
   const filteredAnimals = ANIMALS.filter((animal) => {
     const isDiscovered = Boolean(fieldGuide[animal.id]);
+
+    // Status filter
+    if (statusFilter === 'discovered' && !isDiscovered) return false;
+    if (statusFilter === 'undiscovered' && isDiscovered) return false;
 
     // Search filter
     if (searchQuery.trim()) {
@@ -57,9 +64,21 @@ export function FieldGuide({ fieldGuide, settings }) {
   const handleCardClick = (animal) => {
     const isDiscovered = Boolean(fieldGuide[animal.id]);
     if (isDiscovered) {
+      triggerHaptic('light', settings?.hapticsEnabled);
       playSound('click', settings.soundEnabled);
       setInspectAnimal(animal);
+    } else {
+      triggerHaptic('warning', settings?.hapticsEnabled);
     }
+  };
+
+  const handleRandomStudy = () => {
+    const discoveredList = ANIMALS.filter(a => Boolean(fieldGuide[a.id]));
+    if (discoveredList.length === 0) return;
+    const randomAnimal = discoveredList[Math.floor(Math.random() * discoveredList.length)];
+    triggerHaptic('light', settings?.hapticsEnabled);
+    playSound('click', settings.soundEnabled);
+    setInspectAnimal(randomAnimal);
   };
 
   return (
@@ -103,15 +122,63 @@ export function FieldGuide({ fieldGuide, settings }) {
 
       {/* Search & Filters Controls */}
       <div className="bg-white dark:bg-[#131d1a] p-5 rounded-3xl border border-journal-300 dark:border-stone-800 shadow-sm space-y-4">
-        <div className="relative">
-          <Search className="w-5 h-5 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search discovered animals, categories, or habitats..."
-            className="w-full pl-11 pr-4 py-2.5 rounded-xl bg-journal-50 dark:bg-stone-900 border border-journal-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 placeholder-stone-400 focus:outline-none focus:border-amber-500 text-sm font-medium"
-          />
+        {/* Search Input & Random Study */}
+        <div className="flex flex-col sm:flex-row gap-2.5">
+          <div className="relative flex-1">
+            <Search className="w-5 h-5 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search discovered animals, categories, or habitats..."
+              className="w-full pl-11 pr-4 py-2.5 rounded-xl bg-journal-50 dark:bg-stone-900 border border-journal-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 placeholder-stone-400 focus:outline-none focus:border-amber-500 text-sm font-medium"
+            />
+          </div>
+
+          {discoveredCount > 0 && (
+            <button
+              type="button"
+              onClick={handleRandomStudy}
+              className="px-4 py-2.5 rounded-xl bg-journal-100 hover:bg-journal-200 dark:bg-stone-800 dark:hover:bg-stone-700 text-xs font-bold text-stone-700 dark:text-stone-300 flex items-center justify-center gap-1.5 transition-colors shrink-0"
+              title="Inspect a random discovered species from your compendium"
+            >
+              <Shuffle className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+              <span>Study Random</span>
+            </button>
+          )}
+        </div>
+
+        {/* Discovery Status Filter */}
+        <div className="space-y-1.5">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400 block">
+            Discovery Status
+          </span>
+          <div className="flex flex-wrap gap-1.5">
+            {[
+              { id: 'all', label: `All Species (${totalCount})` },
+              { id: 'discovered', label: `✓ Discovered (${discoveredCount})` },
+              { id: 'undiscovered', label: `🔒 Undiscovered (${totalCount - discoveredCount})` },
+            ].map((status) => {
+              const isSelected = statusFilter === status.id;
+              return (
+                <button
+                  key={status.id}
+                  type="button"
+                  onClick={() => {
+                    triggerHaptic('light', settings?.hapticsEnabled);
+                    setStatusFilter(status.id);
+                  }}
+                  className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all ${
+                    isSelected
+                      ? 'bg-amber-600 text-white shadow-sm'
+                      : 'bg-journal-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-journal-200 dark:hover:bg-stone-700'
+                  }`}
+                >
+                  {status.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Category Pills */}
@@ -293,7 +360,7 @@ export function FieldGuide({ fieldGuide, settings }) {
                 <span className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-1">
                   Animal Spoor
                 </span>
-                <FootprintDisplay animal={inspectAnimal} />
+                <FootprintDisplay animal={inspectAnimal} dimensionUnit={settings?.dimensionUnit} />
               </div>
             </div>
 
